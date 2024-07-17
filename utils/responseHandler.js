@@ -17,7 +17,9 @@ const success = (code, data, res) => {
  */
 const error = (error, res) => {
     // TODO: Log the error into dashboard IT team
-  
+    console.log("An error occured");
+    console.error(error);
+
     return res.status(400).json({ success: false });
 }
 
