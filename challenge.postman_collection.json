@@ -1,0 +1,459 @@
+{
+	"info": {
+		"_postman_id": "b23e3d62-5d74-45de-87a9-70cca755d09a",
+		"name": "challenge",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "attorney",
+			"item": [
+				{
+					"name": "Update Attorney",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"_id\": \"6697b90bb118dca512de1a91\",\n    \"name\": \"Jordan\",\n    \"email\": \"jordan.lcq3@gmail.com\",\n    \"phone\": \"00\",\n    \"adress\": \"Toulouse\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/attorney-data/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"attorney-data",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fetch attorneys",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/attorney-data",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"attorney-data"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create attorney",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Jordan\",\n    \"email\": \"jordan.lcq1@gmail.com\",\n    \"phone\": \"00\",\n    \"adress\": \"Toulouse\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/attorney-data",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"attorney-data"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete attorney",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"_id\": \"6697b90bb118dca512de1a91\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/attorney-data/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"attorney-data",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "traffic state",
+			"item": [
+				{
+					"name": "Fetch traffic states",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/traffic-state-data",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"traffic-state-data"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create traffic state",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"shortName\": \"CT\",\n    \"longName\": \"Connecticut\",\n    \"enabled\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/traffic-state-data",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"traffic-state-data"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update traffic state",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n     \"shortName\": \"I-5\",\n    \"longName\": \"Interstate 5 - California to Washingtonn\",\n    \"enabled\": true,\n    \"_id\": \"6697c203da6e1f1674ca3386\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/traffic-state-data",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"traffic-state-data"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete traffic state",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"_id\": \"6697c2734fc4a4ad692d8990\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/traffic-state-data",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"traffic-state-data"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "traffic county",
+			"item": [
+				{
+					"name": "Fetch traffic counties",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/traffic-county-data",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"traffic-county-data"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create traffic county",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Spring Field\",\n    \"shortName\": \"SF\",\n    \"enabled\": true,\n    \"trafficState\": \"6697c507f51ebf2b27a75135\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/traffic-county-data",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"traffic-county-data"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update traffic county",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Spring Fielde\",\n    \"trafficState\": \"6697c507f51ebf2b27a75135\",\n    \"shortName\": \"SF\",\n    \"enabled\": true,\n    \"_id\": \"6697c61fe6c3afd2b8981cc3\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/traffic-county-data",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"traffic-county-data"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete traffic county",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"_id\": \"6697c61fe6c3afd2b8981cc3\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/traffic-county-data",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"traffic-county-data"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "violation",
+			"item": [
+				{
+					"name": "Fetch violations",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/violation-data",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"violation-data"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create violation",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"DRIVING ON SHOULDER\",\n    \"points\": 8\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/violation-data",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"violation-data"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update violation",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"No Seat belt\",\n    \"points\": 5,\n    \"_id\": \"6697bf16da6e1f1674ca336d\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/violation-data",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"violation-data"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete violation",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"_id\": \"6697bf16da6e1f1674ca336d\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/violation-data",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"violation-data"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
