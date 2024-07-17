@@ -111,13 +111,3 @@ Below is an example of a JSON price map which shows a mix between a price per co
   ]
 }
 ```
-
-### Design Patterns
-
-Feel free to incorporate design patterns into the modelization of this system like factories, observers, singletons...
-Using design patterns can improve the code's readability, maintainability, and scalability.
-
-### Additional Steps
-
-- Write tests: Ensure your code is covered by integration tests (optional)
-- Add styling: Use @mui/material for components styling (mandatory)
