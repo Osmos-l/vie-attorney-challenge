@@ -49,17 +49,7 @@ This project is a web application for managing attorneys and their related price
 
    The application will be available at `http://localhost:3000`.
 
-5. ## Instructions
-
-### Completing the API
-
-1. **Define Mongoose Schemas:**
-
-   - Ensure all required schemas (`Attorney`, `AttorneyPrice`, `TrafficCourt`, `TrafficCounty`, and `Violation`) are defined in the `models` directory and feel free to add or modify attributes
-
-2. **Set up API routes:**
-   - Complete the CRUD operations for each entity in the `pages/api` directory. Ensure that each API route handles requests to create, read, update, and delete records.
-   - Use `dbConnect.js` to establish a connection to MongoDB.
+5. ## TODO
 
 ### Writing React Components with Next.js
 
