@@ -344,6 +344,118 @@
 			]
 		},
 		{
+			"name": "traffic court",
+			"item": [
+				{
+					"name": "Fetch traffic courts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/traffic-court-data",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"traffic-court-data"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create traffic court",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"New York\",\n    \"adress\": \"1 Avenue des champs elysée\",\n    \"trafficCounty\": \"6697c5cbe6c3afd2b8981cbe\",\n    \"trafficState\": \"6697c507f51ebf2b27a75135\",\n    \"stateShortName\": \"NYC\",\n    \"enabled\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/traffic-court-data",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"traffic-court-data"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update traffic court",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"New York\",\n    \"trafficCounty\": \"6697c5cbe6c3afd2b8981cbe\",\n    \"trafficState\": \"6697c507f51ebf2b27a75135\",\n    \"stateShortName\": \"NYC\",\n    \"enabled\": true,\n    \"_id\": \"6697c9247eec26a8aab8b102\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/traffic-court-data",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"traffic-court-data"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete traffic court",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"_id\": \"6697c9247eec26a8aab8b102\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/traffic-court-data",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"traffic-court-data"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "violation",
 			"item": [
 				{
