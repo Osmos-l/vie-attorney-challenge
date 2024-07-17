@@ -120,6 +120,122 @@
 			]
 		},
 		{
+			"name": "attorney price map",
+			"item": [
+				{
+					"name": "Fetch attorney prices map",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/attorney-price-map-data/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"attorney-price-map-data",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create attorney Price Map",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"attorney\": \"6697caf512bfdc4fe7f45201\",\n    \"court\": \"6697c9787eec26a8aab8b10a\",\n    \"points\": 4,\n    \"price\": 250\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/attorney-price-map-data/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"attorney-price-map-data",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Attorney Price Map",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\n    \"_id\": \"6697cbb71faff44d040c2722\",\n    \"attorney\": \"6697caf512bfdc4fe7f45201\",\n    \"court\": \"6697c9787eec26a8aab8b10a\",\n    \"points\": 4,\n    \"price\": 2500,\n    \"__v\": 0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/attorney-price-map-data/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"attorney-price-map-data",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Attorney price map",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\n    \"_id\": \"6697cbb71faff44d040c2722\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/attorney-price-map-data/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"attorney-price-map-data",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "traffic state",
 			"item": [
 				{
