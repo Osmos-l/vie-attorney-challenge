@@ -11,7 +11,7 @@ const TrafficCountySchema = new mongoose.Schema({
     ref: 'TrafficState',
     required: true,
   },
-  stateShortName: {
+  shortName: {
     type: String,
     required: true,
   },
