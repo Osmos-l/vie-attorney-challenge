@@ -80,17 +80,17 @@ const AttorneyStore = types
           phone:    attorney.contactPhone,
         };
         const response = yield axios.put(`/api/attorney-data/${id}`, payload);
-        const { data } = response.data;
-
-        const updatedAttorney = {
-          objectId: data._id,
-          enabled: data.enabled,
-          chatEnabled: data.chatEnabled || false,
-          name: data.name,
-          contactAddress: data.address,
-          contactEmail: data.email,
-          contactPhone: data.phone,
-        };
+        const { attorneyData } = response.data;
+        
+        const updatedAttorney = new AttorneyBuilder()
+                                .withObjectId(attorneyData._id)
+                                .withEnabled(attorneyData.enabled)
+                                .withChatEnabled(attorneyData.chatEnabled || false)
+                                .withName(attorneyData.name)
+                                .withContactAddress(attorneyData.address)
+                                .withContactEmail(attorneyData.email)
+                                .withContactPhone(attorneyData.phone)
+                                .build()
 
         const index = self.attorneys.findIndex(a => a.objectId === attorney.objectId);
         if (index !== -1) {
