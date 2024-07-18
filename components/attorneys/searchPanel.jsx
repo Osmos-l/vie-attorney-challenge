@@ -22,7 +22,7 @@ const AttorneysSearchPanel = () => {
             >
                 <Box sx={{ width: '300px' }}>
                     <SearchBar queryName={'name'} />
-                    <Button sx={{ width: '100%' }}>New Attorney</Button>
+                    <Button sx={{ width: '100%' }}>+ New Attorney</Button>
                 </Box>
             </Box>
             <Box>

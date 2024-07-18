@@ -1,6 +1,10 @@
 import { Box, Button, Card, CardActions, CardContent, Grid, Typography } from "@mui/material"
 import { inject, observer } from 'mobx-react';
 import { useEffect } from "react";
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
+import ZoomInMapIcon from '@mui/icons-material/ZoomInMap';
+import Divider from '@mui/material/Divider';
 
 const AttorneyCard = (props) => {
     const { attorney } = props;
@@ -23,8 +27,16 @@ const AttorneyCard = (props) => {
                         Lorem ispum.
                     </Typography>
                 </CardContent>
-                <CardActions>
-                    <Button size="small">Show prices</Button>
+                <CardActions sx={{ justifyContent: 'space-between' }}>
+                    <Button size="small" startIcon={<ZoomInMapIcon />}>Show prices</Button>
+                    <Box>
+                        <Button variant="contained" startIcon={<EditIcon />}>
+                            Edit
+                        </Button>
+                        <Button variant="outlined" color="error" startIcon={<DeleteIcon />}>
+                            Delete
+                        </Button>
+                    </Box>
                 </CardActions>
             </Card>
         </Grid>
