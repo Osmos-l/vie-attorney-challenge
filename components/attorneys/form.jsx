@@ -1,11 +1,11 @@
 import { inject, observer } from 'mobx-react';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, TextField, Button, Typography, Select, MenuItem, FormControl, InputLabel } from '@mui/material';
 import { useRouter } from 'next/router';
 
 import Alert from '@mui/material/Alert';
 
-const AttorneyForm = ({ attorneyStore }) => {
+const AttorneyForm = ({ initialData, attorneyStore }) => {
     const [id, setId] = useState(null);
     const [name, setName] = useState('');
     const [contactAddress, setContactAddress] = useState('');
@@ -14,6 +14,20 @@ const AttorneyForm = ({ attorneyStore }) => {
 
     const [success, setSuccess] = useState(false);
     const [error, setError]     = useState(false);
+
+    useEffect(() => {
+        if (initialData) {
+            mountFormWithInitialData();
+        }
+    }, [initialData]);
+
+    const mountFormWithInitialData = () => {
+        setId(initialData.objectId);
+        setName(initialData.name);
+        setContactAddress(initialData.contactAddress);
+        setContactPhone(initialData.contactPhone);
+        setContactEmail(initialData.contactEmail);
+    }
 
     const router = useRouter();
     const handleCancel = () => {
@@ -31,7 +45,7 @@ const AttorneyForm = ({ attorneyStore }) => {
 
         try {
             if (id) {
-
+                await attorneyStore.updateAttorney(id, attorney);
             } else {
                 await attorneyStore.createAttorney(attorney);
             }
@@ -61,7 +75,7 @@ const AttorneyForm = ({ attorneyStore }) => {
             {
                 success ? (
                     <Alert severity="success">
-                        Attorney created successfully !
+                        Attorney { id ? "updated" : "created " } successfully !
                     </Alert>
                 ) : (<></>)
             } 
@@ -73,7 +87,7 @@ const AttorneyForm = ({ attorneyStore }) => {
                 ) : (<></>)
             }
         <Typography variant="h5" component="div" sx={{ mb: 2 }}>
-            Attorney Form
+            {id ? `${name} Form` : 'Attorney Form'}
         </Typography>
         <TextField
             label="Name"

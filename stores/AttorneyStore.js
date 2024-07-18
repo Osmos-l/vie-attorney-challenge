@@ -8,7 +8,9 @@ const AttorneyStore = types
     isLoading: types.optional(types.boolean, false),
   })
   .views((self) => ({
-    // Add views here
+    get attorneyById() {
+      return (id) => self.attorneys.find(attorney => attorney.objectId === id);
+    },
   }))
   .actions((self) => ({
     fetchAttorneys: flow(function* fetchAttorneys(searchTerm = '') {
@@ -67,7 +69,36 @@ const AttorneyStore = types
      
 
     }),
-    updateAttorney: flow(function* updateAttorney(attorney) {}),
+    updateAttorney: flow(function* updateAttorney(id, attorney) {
+      try {
+        const payload = {
+          name:     attorney.name,
+          address:  attorney.contactAddress,
+          email:    attorney.contactEmail,
+          phone:    attorney.contactPhone,
+        };
+        const response = yield axios.put(`/api/attorney-data/${id}`, payload);
+        const { data } = response.data;
+
+        const updatedAttorney = {
+          objectId: data._id,
+          enabled: data.enabled,
+          chatEnabled: data.chatEnabled || false,
+          name: data.name,
+          contactAddress: data.address,
+          contactEmail: data.email,
+          contactPhone: data.phone,
+        };
+
+        const index = self.attorneys.findIndex(a => a.objectId === attorney.objectId);
+        if (index !== -1) {
+          self.attorneys[index] = updatedAttorney;
+        }
+      } catch (error) {
+        console.error('Failed to update attorney:', error);
+        throw error;
+      }
+    }),
     disableAttorney: flow(function* toggleAttorney(attorney) {}),
     // Add more actions here
   }))

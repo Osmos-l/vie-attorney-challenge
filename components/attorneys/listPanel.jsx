@@ -28,9 +28,9 @@ const AttorneyCard = (props) => {
                     </Typography>
                 </CardContent>
                 <CardActions sx={{ justifyContent: 'space-between' }}>
-                    <Button size="small" startIcon={<ZoomInMapIcon />}>Show prices</Button>
+                    <Button href={`/attorneys-panel/show/${attorney.objectId}`} size="small" startIcon={<ZoomInMapIcon />}>Show prices</Button>
                     <Box>
-                        <Button variant="contained" startIcon={<EditIcon />}>
+                        <Button href={`/attorneys-panel/edit/${attorney.objectId}`} variant="contained" startIcon={<EditIcon />}>
                             Edit
                         </Button>
                         <Button variant="outlined" color="error" startIcon={<DeleteIcon />}>
