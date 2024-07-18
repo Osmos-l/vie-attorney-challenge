@@ -6,7 +6,7 @@ const Attorney = types
     enabled: types.optional(types.boolean, false),
     chatEnabled: types.optional(types.boolean, false),
     name: types.string,
-    companyName: types.string,
+    contactAddress: types.string,
     contactEmail: types.string,
     contactPhone: types.maybe(types.string),
     summary: types.maybe(types.string),

@@ -17,7 +17,7 @@ const AttorneyCard = (props) => {
                         {attorney.name}
                     </Typography>
                     <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                        {attorney.companyName}
+                        {attorney.contactAddress}
                     </Typography>
                     <Typography variant="body2">
                         {attorney.contactEmail}
@@ -72,8 +72,8 @@ const AttorneysListPanel = ({ attorneyStore, query }) => {
             <Grid container spacing={2}>
                 {
                     attorneyStore.isLoading ? (
-                        [...Array(10)].map(() => (
-                            <AttorneyCardSkeleton />
+                        [...Array(10)].map((i) => (
+                            <AttorneyCardSkeleton key={i} />
                         ))
                        
                     ) : (

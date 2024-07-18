@@ -24,7 +24,7 @@ const AttorneyStore = types
           enabled: attorney.enabled,
           chatEnabled: attorney.chatEnabled || false,
           name: attorney.name,
-          companyName: attorney.address || '559 W Cordova Rd, Santa Fe, New York',
+          contactAddress: attorney.address || '559 W Cordova Rd, Santa Fe, New York',
           contactEmail: attorney.email,
           contactPhone: attorney.phone,
         }));
@@ -36,7 +36,37 @@ const AttorneyStore = types
         self.isLoading = false;
       }
     }),
-    createAttorney: flow(function* createAttorney(attorney) {}),
+    createAttorney: flow(function* createAttorney(attorney) {
+      try {
+        const payload = {
+          name:     attorney.name,
+          address:  attorney.contactAddress,
+          email:    attorney.contactEmail,
+          phone:    attorney.contactPhone
+        }
+
+        const response = yield axios.post('/api/attorney-data', payload);
+        const { data } = response.data;
+
+        const createdAttorney = {
+          objectId: data._id,
+          enabled:  data.enabled,
+          chatEnabled: data.chatEnabled || false,
+          name:     data.name,
+          contactAddress: data.address,
+          contactEmail:   data.email,
+          contactPhone:   data.phone,
+        };
+
+        self.attorneys.push(createdAttorney);
+
+      } catch (error) {
+        console.error(error);
+        throw error;
+      }
+     
+
+    }),
     updateAttorney: flow(function* updateAttorney(attorney) {}),
     disableAttorney: flow(function* toggleAttorney(attorney) {}),
     // Add more actions here
