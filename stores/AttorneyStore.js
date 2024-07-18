@@ -63,7 +63,6 @@ const AttorneyStore = types
                                 .build()
 
         self.attorneys.push(createdAttorney);
-
       } catch (error) {
         console.error(error);
         throw error;
