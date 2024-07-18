@@ -1,5 +1,6 @@
 import { types, flow } from 'mobx-state-tree'
 import Attorney from '@/stores/models/Attorney'
+import AttorneyBuilder from '@/utils/builders/attorneyBuilder'
 import axios from 'axios';
 
 const AttorneyStore = types
@@ -21,15 +22,17 @@ const AttorneyStore = types
           params: searchTerm
         });
         
-        const attorneys = response.data.data.map((attorney) => ({
-          objectId: attorney._id,
-          enabled: attorney.enabled,
-          chatEnabled: attorney.chatEnabled || false,
-          name: attorney.name,
-          contactAddress: attorney.address || '559 W Cordova Rd, Santa Fe, New York',
-          contactEmail: attorney.email,
-          contactPhone: attorney.phone,
-        }));
+        const attorneys = response.data.data.map((attorneyData) => (
+          new AttorneyBuilder()
+              .withObjectId(attorneyData._id)
+              .withEnabled(attorneyData.enabled)
+              .withChatEnabled(attorneyData.chatEnabled || false)
+              .withName(attorneyData.name)
+              .withContactAddress(attorneyData.address || '')
+              .withContactEmail(attorneyData.email)
+              .withContactPhone(attorneyData.phone)
+              .build()
+        ));
 
         self.attorneys = attorneys;
       } catch (error) {
@@ -48,17 +51,16 @@ const AttorneyStore = types
         }
 
         const response = yield axios.post('/api/attorney-data', payload);
-        const { data } = response.data;
-
-        const createdAttorney = {
-          objectId: data._id,
-          enabled:  data.enabled,
-          chatEnabled: data.chatEnabled || false,
-          name:     data.name,
-          contactAddress: data.address,
-          contactEmail:   data.email,
-          contactPhone:   data.phone,
-        };
+        const { attorneyData } = response.data;
+        const createdAttorney = new AttorneyBuilder()
+                                .withObjectId(attorneyData._id)
+                                .withEnabled(attorneyData.enabled)
+                                .withChatEnabled(attorneyData.chatEnabled || false)
+                                .withName(attorneyData.name)
+                                .withContactAddress(attorneyData.address)
+                                .withContactEmail(attorneyData.email)
+                                .withContactPhone(attorneyData.phone)
+                                .build()
 
         self.attorneys.push(createdAttorney);
 
