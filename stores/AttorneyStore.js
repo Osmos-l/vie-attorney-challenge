@@ -5,14 +5,20 @@ import axios from 'axios';
 const AttorneyStore = types
   .model('AttorneyStore', {
     attorneys: types.array(Attorney), // Initialize attorneysPanel as an array of Attorney model
+    isLoading: types.optional(types.boolean, false),
   })
   .views((self) => ({
     // Add views here
   }))
   .actions((self) => ({
-    fetchAttorneys: flow(function* fetchAttorneys() {
+    fetchAttorneys: flow(function* fetchAttorneys(searchTerm = '') {
       try {
-        const response = yield axios.get('/api/attorney-data');
+        self.isLoading = true;
+
+        const response = yield axios.get('/api/attorney-data', {
+          params: searchTerm
+        });
+        
         const attorneys = response.data.data.map((attorney) => ({
           objectId: attorney._id,
           enabled: attorney.enabled,
@@ -26,7 +32,9 @@ const AttorneyStore = types
         self.attorneys = attorneys;
       } catch (error) {
         console.error(error);
-      } 
+      }  finally {
+        self.isLoading = false;
+      }
     }),
     createAttorney: flow(function* createAttorney(attorney) {}),
     updateAttorney: flow(function* updateAttorney(attorney) {}),

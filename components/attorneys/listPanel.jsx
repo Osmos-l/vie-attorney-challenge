@@ -1,6 +1,6 @@
-import { Box, Button, Card, CardActions, CardContent, Grid, Typography } from "@mui/material"
+import { Box, Button, Card, CardActions, CardContent, Grid, Skeleton, Typography } from "@mui/material"
 import { inject, observer } from 'mobx-react';
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import ZoomInMapIcon from '@mui/icons-material/ZoomInMap';
@@ -8,7 +8,7 @@ import Divider from '@mui/material/Divider';
 
 const AttorneyCard = (props) => {
     const { attorney } = props;
-    console.log(attorney);
+
     return (
         <Grid item xs={6} md={3}>
             <Card>
@@ -43,20 +43,46 @@ const AttorneyCard = (props) => {
     )
 }
 
-const AttorneysListPanel = ({ attorneyStore }) => {
+const AttorneyCardSkeleton = () => {
+
+    return (
+        <Grid item xs={6} md={3}>
+            <Card>
+                <CardContent>
+                    <Skeleton />
+                    <Skeleton />
+                    <Skeleton />
+                </CardContent>
+                <CardActions>
+                    <Skeleton />
+                </CardActions>
+            </Card>
+        </Grid>
+    )
+}
+
+const AttorneysListPanel = ({ attorneyStore, query }) => {
 
     useEffect(() => {
-        attorneyStore.fetchAttorneys();
-    }, [attorneyStore]);
+        attorneyStore.fetchAttorneys(query);
+    }, [attorneyStore, query]);
 
     return (
         <Box sx={{ flexGrow: 1 }}>
             <Grid container spacing={2}>
                 {
-                    attorneyStore.attorneys.map((attorney) => (
-                        <AttorneyCard attorney={attorney} key={attorney.objectId} />
-                    ))
+                    attorneyStore.isLoading ? (
+                        [...Array(10)].map(() => (
+                            <AttorneyCardSkeleton />
+                        ))
+                       
+                    ) : (
+                        attorneyStore.attorneys.map((attorney) => (
+                            <AttorneyCard attorney={attorney} key={attorney.objectId} />
+                        ))
+                    )
                 }
+                
             </Grid>
         </Box>
     )

@@ -3,9 +3,12 @@ import Attorney from '@/db-schemas/Attorney'
 import responseHandler from '@/utils/responseHandler';
 
 // TODO: Add Pagination
-const getAttorneys = async (res) => {
-  const attorneys = await Attorney.find();
-    
+const getAttorneys = async (query, res) => {
+  const { name } = query;
+  query = name ? { name: new RegExp(name, 'i') } : {};
+
+  const attorneys = await Attorney.find(query);
+
   return responseHandler.success(200, attorneys, res);
 }
 
@@ -38,13 +41,13 @@ const deleteAttorney = async (body, res) => {
 }
 
 export default async function handler(req, res) {
-  const { method, body, params } = req;
+  const { method, body, params, query } = req;
 
   await dbConnect();
 
   try {
     switch (method) {
-      case 'GET':     return await getAttorneys(res);
+      case 'GET':     return await getAttorneys(query, res);
       case 'POST':    return await createAttorney(body, res);
       case 'PUT':     return await updateAttorney(body, res);
       case 'DELETE':  return await deleteAttorney(body, res);

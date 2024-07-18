@@ -9,10 +9,6 @@ const AttorneysSearchPanel = () => {
     const searchParams  = useSearchParams();
     const query = Object.fromEntries([...searchParams]);
 
-    useEffect(() => {
-        // Vous pouvez utiliser attorneyStore et faire des effets secondaires ici si nécessaire
-    }, [query]);
-
     return (
         <Box>
             <Box
@@ -25,8 +21,8 @@ const AttorneysSearchPanel = () => {
                     <Button sx={{ width: '100%' }}>+ New Attorney</Button>
                 </Box>
             </Box>
-            <Box>
-                <AttorneysListPanel />
+            <Box sx={{ paddingTop: 2 }}>
+                <AttorneysListPanel query={query} />
             </Box>
         </Box>
     );
