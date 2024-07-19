@@ -1,9 +1,12 @@
 import { inject, observer } from 'mobx-react';
 import React, { Suspense, useEffect, useState } from 'react';
-import { Box, TextField, Button, Typography, Select, MenuItem, FormControl, InputLabel, Divider, Avatar, List, ListItem, ListItemText } from '@mui/material';
+import { Box, TextField, Button, Typography, Select, MenuItem, FormControl, InputLabel, Divider, Avatar, List, ListItem, ListItemText, ListItemIcon } from '@mui/material';
 import { useRouter } from 'next/router';
 import AttorneyFakeImage from '@/public/pierre_gasly_attorney.webp'
 import AttorneyPricesMapListPanel from '@/components/attorneyPriceMap/listPanel';
+import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
+import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
+import BusinessIcon from '@mui/icons-material/Business';
 
 import Alert from '@mui/material/Alert';
 import SkeletonAttorneyPricesMapListPanel from '../attorneyPriceMap/skeletonListPanel';
@@ -66,22 +69,44 @@ const AttorneyDetails = ({ attorney, attorneyStore }) => {
                         Informations
                     </Typography>
                     <List>
-                        <ListItem>
+                        <ListItem           
+                            href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(attorney.contactAddress)}`}
+                            target="_blank"
+                            component="a"
+                            style={{ color: 'inherit', textDecoration: 'none' }}
+                        >
+                            <ListItemIcon>
+                                <BusinessIcon />
+                            </ListItemIcon>
                             <ListItemText
                                 secondary={attorney.contactAddress}
                                 primary={'Address'}
                             />
                         </ListItem>
-                        <ListItem>
-                            <ListItemText
-                                secondary={attorney.contactPhone}
-                                primary={'Phone'}
-                            />
-                        </ListItem>
-                        <ListItem>
+                        <ListItem
+                            href={`mailto:${attorney.contactEmail}`}
+                            component="a"
+                            sx={{ color: 'inherit', textDecoration: 'none' }}
+                        >
+                            <ListItemIcon>
+                                <AlternateEmailIcon />
+                            </ListItemIcon>
                             <ListItemText
                                 secondary={attorney.contactEmail}
                                 primary={'Email'}
+                            />
+                        </ListItem>
+                        <ListItem
+                            href={`tel:${attorney.contactPhone}`}
+                            component="a"
+                            sx={{ color: 'inherit', textDecoration: 'none' }}
+                        >
+                            <ListItemIcon>
+                                <LocalPhoneIcon />
+                            </ListItemIcon>
+                            <ListItemText
+                                secondary={attorney.contactPhone}
+                                primary={'Phone'}
                             />
                         </ListItem>
                     </List>
