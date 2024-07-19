@@ -100,7 +100,7 @@ const AttorneyDetails = ({ attorney, attorneyStore }) => {
             <Divider />
             <Box sx={{paddingTop: 2}}>
                 <Suspense fallback={<SkeletonAttorneyPricesMapListPanel />}>          
-                    <AttorneyPricesMapListPanel />
+                    <AttorneyPricesMapListPanel attorneyId={attorney.objectId} />
                 </Suspense>
             </Box>
         </Box>

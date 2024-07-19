@@ -15,6 +15,7 @@
     "@mui/material": "^5.16.4",
     "axios": "^1.7.2",
     "dotenv": "^16.4.5",
+    "human-format": "^1.2.0",
     "mobx": "^6.13.0",
     "mobx-react": "^9.1.1",
     "mobx-state-tree": "^6.0.1",

@@ -1,58 +1,126 @@
-import { Box, Button, Card, CardActions, CardContent, Grid, Typography } from "@mui/material"
+import { Box, Button, Card, CardActions, CardContent, Grid, List, ListItem, ListItemIcon, ListItemText, Typography } from "@mui/material"
 import { inject, observer } from 'mobx-react';
 import { useEffect, useState } from "react";
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import ZoomInMapIcon from '@mui/icons-material/ZoomInMap';
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
+import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
+import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
+import PanToolIcon from '@mui/icons-material/PanTool';
+import FlagIcon from '@mui/icons-material/Flag';
 import SkeletonAttorneyPricesMapListPanel from "@/components/attorneyPriceMap/skeletonListPanel";
+import SentimentDissatisfiedIcon from '@mui/icons-material/SentimentDissatisfied';
 
-const AttorneyCard = (props) => {
-    const { attorney } = props;
+import humanFormat from "human-format";
+
+const PriceMapCard = (props) => {
+    const { priceMap } = props;
 
     return (
         <Grid item xs={12} sm={6} md={3}>
             <Card>
                 <CardContent>
-                    <Typography variant="h5" component="div">
-                        {attorney.name}
-                    </Typography>
-                    <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                        {attorney.contactAddress}
-                    </Typography>
-                    <Typography variant="body2">
-                        {attorney.contactEmail}
-                        <br />
-                        {attorney.contactPhone}
-                        <br />
-                        Lorem ispum.
-                    </Typography>
+                    <List>
+                        {priceMap.violation && (
+                            <ListItem>
+                                <ListItemIcon>
+                                    <PanToolIcon />
+                                </ListItemIcon>
+                                <ListItemText
+                                    secondary={priceMap.violation}
+                                    primary={'Violation'}
+                                />
+                            </ListItem>
+                        )}
+                        {priceMap.court && (
+                            <ListItem>
+                                <ListItemIcon>
+                                    <AccountBalanceIcon />
+                                </ListItemIcon>
+                                <ListItemText
+                                    secondary={priceMap.court}
+                                    primary={'Court'}
+                                />
+                            </ListItem>
+                        )}
+                        {priceMap.county && (
+                            <ListItem>
+                                <ListItemIcon>
+                                    <FlagIcon />
+                                </ListItemIcon>
+                                <ListItemText
+                                    secondary={priceMap.county}
+                                    primary={'County'}
+                                />
+                            </ListItem>
+                        )}
+                        <ListItem>
+                            <ListItemIcon>
+                                <DirectionsCarIcon />
+                            </ListItemIcon>
+                            <ListItemText
+                                secondary={priceMap.points}
+                                primary={'Points'}
+                            />
+                        </ListItem>
+                        <ListItem>
+                            <ListItemIcon>
+                                <AttachMoneyIcon />
+                            </ListItemIcon>
+                            <ListItemText
+                                secondary={humanFormat(priceMap.price)}
+                                primary={'Price'}
+                            />
+                        </ListItem>
+                    </List>
                 </CardContent>
-                <CardActions sx={{ justifyContent: 'space-between' }}>
-                    <Button href={`/attorneys-panel/show/${attorney.objectId}`} size="small" startIcon={<ZoomInMapIcon />}>Show prices</Button>
-                    <Box>
-                        <Button href={`/attorneys-panel/edit/${attorney.objectId}`} variant="contained" startIcon={<EditIcon />}>
-                            Edit
-                        </Button>
-                        <Button variant="outlined" color="error" startIcon={<DeleteIcon />}>
-                            Delete
-                        </Button>
-                    </Box>
-                </CardActions>
             </Card>
         </Grid>
     )
 }
 
-const AttorneyPricesMapListPanel = ({ attorneyPriceMapStore, query }) => {
+const AttorneyPricesMapListPanel = ({ attorneyId, attorneyPriceMapStore }) => {
     useEffect(() => {
-        //attorneyStore.fetchAttorneys(query);
-    }, [attorneyPriceMapStore, query]);
+        if (attorneyId) {
+            const params = {
+                attorneyId: attorneyId
+            };
+
+            attorneyPriceMapStore.fetchPrices(params);
+        }
+    }, [attorneyPriceMapStore, attorneyId]);
 
     return (
         attorneyPriceMapStore.isLoading ? (
             <SkeletonAttorneyPricesMapListPanel />
         ) : (
-            <SkeletonAttorneyPricesMapListPanel />
+            <>
+            <Box sx={{ flexGrow: 1 }}>
+                <Grid container spacing={2}>
+                    {
+                        attorneyPriceMapStore.priceMap.length <= 0 ? 
+                        (
+                            <Grid item xs={12}>
+                                    <Typography 
+                                        color="text.secondary"
+                                        sx={{textAlign: 'center', mb: 1.5 }}
+                                    >
+                                        <SentimentDissatisfiedIcon /><br />
+                                        No data found ...
+                                    </Typography>
+                            </Grid>
+                        ) : (
+                            attorneyPriceMapStore.priceMap.map((priceMap) => (
+                                <PriceMapCard priceMap={priceMap} key={priceMap.objectId} />
+                            ))
+                        )
+                    }
+                    
+                </Grid>
+            </Box>
+            </>
+            
         )
     );
 };
