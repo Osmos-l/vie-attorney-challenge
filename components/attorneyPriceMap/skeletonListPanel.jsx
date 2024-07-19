@@ -1,6 +1,6 @@
 import { Box, Card, CardActions, CardContent, Grid, Skeleton } from "@mui/material"
 
-const AttorneyCardSkeleton = () => {
+const AttorneyPriceMapCardSkeleton = () => {
     return (
         <Grid item xs={12} sm={6} md={3}>
             <Card>
@@ -17,14 +17,14 @@ const AttorneyCardSkeleton = () => {
     )
 }
 
-const SkeletonAttorneysListPanel = () => {
+const SkeletonAttorneyPricesMapListPanel = () => {
 
     return (
         <Box sx={{ flexGrow: 1 }}>
             <Grid container spacing={2}>
                 {
                    [...Array(10)].map((_, i) => (
-                    <AttorneyCardSkeleton key={i} />
+                    <AttorneyPriceMapCardSkeleton key={i} />
                     ))
                 }
             </Grid>
@@ -32,4 +32,4 @@ const SkeletonAttorneysListPanel = () => {
     )
 }
 
-export default SkeletonAttorneysListPanel;
+export default SkeletonAttorneyPricesMapListPanel;

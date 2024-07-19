@@ -3,6 +3,7 @@ import { inject, observer } from 'mobx-react'
 import { Box, Typography } from '@mui/material'
 import { withRouter } from 'next/router';
 import AttorneyDetails from '@/components/attorneys/details';
+import SkeletonAttorneyDetails from '@/components/attorneys/skeletonDetails';
 
 @inject(({ store }) => ({ attorneyStore: store.attorney }))
 @observer
@@ -54,7 +55,7 @@ class AttorneysPanelPage extends Component {
             sx={{paddingTop: 2}}
         >
             {loading ? (
-              <Typography>Loading...</Typography>
+              <SkeletonAttorneyDetails />
             ) : (
               <AttorneyDetails attorney={attorney} />
             )}

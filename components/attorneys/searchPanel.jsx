@@ -1,10 +1,11 @@
 import { Box, Button, Divider, FormControl, InputLabel, Select } from "@mui/material";
 import { useSearchParams } from "next/navigation";
 import { SearchBar } from "../app/SearchBar";
-import AttorneysListPanel from "./listPanel";
 import { inject, observer } from 'mobx-react';
-import { Suspense, useEffect } from 'react';
+import { Suspense, useEffect, lazy } from 'react';
 import SkeletonAttorneysListPanel from "./skeletonListPanel";
+
+const AttorneysListPanel = lazy(() => import('./listPanel'));
 
 const Filters = () => {
 

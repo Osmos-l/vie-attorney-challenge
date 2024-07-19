@@ -1,10 +1,12 @@
 import { inject, observer } from 'mobx-react';
-import React, { useEffect, useState } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
 import { Box, TextField, Button, Typography, Select, MenuItem, FormControl, InputLabel, Divider, Avatar, List, ListItem, ListItemText } from '@mui/material';
 import { useRouter } from 'next/router';
 import AttorneyFakeImage from '@/public/pierre_gasly_attorney.webp'
+import AttorneyPricesMapListPanel from '@/components/attorneyPriceMap/listPanel';
 
 import Alert from '@mui/material/Alert';
+import SkeletonAttorneyPricesMapListPanel from '../attorneyPriceMap/skeletonListPanel';
 
 const AttorneyDetails = ({ attorney, attorneyStore }) => {
     const router = useRouter();
@@ -12,7 +14,6 @@ const AttorneyDetails = ({ attorney, attorneyStore }) => {
     const handleCancel = () => {
         router.back();
     }
-
 
     return (
         <Box sx={{flexGrow: 1}}>
@@ -97,6 +98,11 @@ const AttorneyDetails = ({ attorney, attorneyStore }) => {
                 </Box>
             </Box>
             <Divider />
+            <Box sx={{paddingTop: 2}}>
+                <Suspense fallback={<SkeletonAttorneyPricesMapListPanel />}>          
+                    <AttorneyPricesMapListPanel />
+                </Suspense>
+            </Box>
         </Box>
   )
 

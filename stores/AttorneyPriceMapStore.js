@@ -4,6 +4,7 @@ import AttorneyPrice from '@/stores/models/AttorneyPrice'
 const AttorneyPriceMapStore = types
   .model('AttorneyPriceMapStore', {
     priceMap: types.array(AttorneyPrice), // Initialize attorneysPanel as an array of Attorney model
+    isLoading: types.optional(types.boolean, false),
   })
   .views((self) => ({
     // Add views here
