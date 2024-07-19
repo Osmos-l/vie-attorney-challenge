@@ -1,3 +1,5 @@
+import Attorney from "@/stores/models/Attorney";
+
 class AttorneyBuilder {
     constructor() {
       this.attorney = {
@@ -47,7 +49,7 @@ class AttorneyBuilder {
     }
   
     build() {
-      return this.attorney;
+      return Attorney.create(this.attorney);
     }
   }
 
