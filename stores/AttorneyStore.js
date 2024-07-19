@@ -51,7 +51,7 @@ const AttorneyStore = types
         }
 
         const response = yield axios.post('/api/attorney-data', payload);
-        const { attorneyData } = response.data.data;
+        const attorneyData = response.data.data;
         const createdAttorney = new AttorneyBuilder()
                                 .withObjectId(attorneyData._id)
                                 .withEnabled(attorneyData.enabled)
@@ -79,7 +79,7 @@ const AttorneyStore = types
           phone:    attorney.contactPhone,
         };
         const response = yield axios.put(`/api/attorney-data/${id}`, payload);
-        const { attorneyData } = response.data.data;
+        const attorneyData = response.data.data;
         
         const updatedAttorney = new AttorneyBuilder()
                                 .withObjectId(attorneyData._id)
