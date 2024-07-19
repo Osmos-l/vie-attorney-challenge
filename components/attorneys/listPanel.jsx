@@ -7,6 +7,7 @@ import ZoomInMapIcon from '@mui/icons-material/ZoomInMap';
 import SkeletonAttorneysListPanel from "./skeletonListPanel";
 import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
+import LettersAvatar from "../app/LettersAvatar";
 
 const AttorneyCard = (props) => {
     const { attorney } = props;
@@ -15,9 +16,19 @@ const AttorneyCard = (props) => {
         <Grid item xs={12} sm={6} md={3}>
             <Card>
                 <CardContent>
-                    <Typography variant="h5" component="div">
-                        {attorney.name}
-                    </Typography>
+                    <Box sx={{display: 'flex', alignItems: 'center' }}>
+                        <LettersAvatar 
+                            name={attorney.name}
+                        />
+                        <Typography 
+                            variant="h5" 
+                            component="div"
+                            sx={{marginLeft: 1}}
+                        >
+                            {attorney.name}
+                        </Typography>
+                    </Box>
+                    
                     <Typography 
                         href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(attorney.contactAddress)}`}
                         target="_blank"
