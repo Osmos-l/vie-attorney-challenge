@@ -3,7 +3,8 @@ import { useSearchParams } from "next/navigation";
 import { SearchBar } from "../app/SearchBar";
 import AttorneysListPanel from "./listPanel";
 import { inject, observer } from 'mobx-react';
-import { useEffect } from 'react';
+import { Suspense, useEffect } from 'react';
+import SkeletonAttorneysListPanel from "./skeletonListPanel";
 
 const Filters = () => {
 
@@ -73,7 +74,9 @@ const AttorneysSearchPanel = () => {
             <Filters />
             <Divider />
             <Box sx={{ paddingTop: 2 }}>
-                <AttorneysListPanel query={query} />
+                <Suspense fallback={<SkeletonAttorneysListPanel />} >
+                    <AttorneysListPanel query={query} />
+                </Suspense>
             </Box>
         </Box>
     );
