@@ -75,6 +75,17 @@ const PriceMapCard = (props) => {
                         </ListItem>
                     </List>
                 </CardContent>
+                <CardActions sx={{ justifyContent: 'space-between' }}>
+                    <Box></Box>
+                    <Box>
+                        <Button href={`/pricemap-panel/edit/${priceMap.objectId}`} size="small" variant="contained" startIcon={<EditIcon />} sx={{marginRight: 1}}>
+                            Edit
+                        </Button>
+                        <Button variant="outlined" color="error" size="small" startIcon={<DeleteIcon />}>
+                            Delete
+                        </Button>
+                    </Box>
+                </CardActions>
             </Card>
         </Grid>
     )

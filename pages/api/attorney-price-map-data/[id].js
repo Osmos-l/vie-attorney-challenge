@@ -23,10 +23,11 @@ const deleteAttorneyPriceMap = async (id, res) => {
 }
 
 export default async function handler(req, res) {
-  const { method, body, params } = req;
+  const { method, body, params, query } = req;
 
   await dbConnect();
 
+  console.log(query);
   const { id } = query;
 
   try {

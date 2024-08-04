@@ -40,7 +40,7 @@ class AttorneyPriceBuilder {
         return this;
       }
 
-      if (court.constructor.name === TrafficCourt.name) {
+      if (court.objectId) {
         this.attorneyPrice.court = county;
         return this
       }
@@ -71,7 +71,7 @@ class AttorneyPriceBuilder {
         return this;
       }
 
-      if (county.constructor.name === TrafficCounty.name) {
+      if (county.objectId) {
         this.attorneyPrice.county = county;
         return this
       }
@@ -101,7 +101,7 @@ class AttorneyPriceBuilder {
         return this;
       }
 
-      if (violation.constructor.name === Violation.name) {
+      if (violation.objectId) {
         this.attorneyPrice.violation = violation;
         return this
       }

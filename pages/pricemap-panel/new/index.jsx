@@ -8,7 +8,7 @@ import { Box } from '@mui/material';
 
 @inject(({ store }) => store)
 @observer
-class AttorneysPanelPage extends Component {
+class PriceMapNewPage extends Component {
     state = {
         attorneyId: null,
     };
@@ -39,4 +39,4 @@ class AttorneysPanelPage extends Component {
 }
 
 // Exporter le composant avec le routeur pour obtenir les props du router
-export default withRouter(AttorneysPanelPage);
+export default withRouter(PriceMapNewPage);

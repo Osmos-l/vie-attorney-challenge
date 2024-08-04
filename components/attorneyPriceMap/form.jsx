@@ -4,6 +4,7 @@ import { Box, TextField, Button, Typography, Select, MenuItem, FormControl, Inpu
 import { useRouter } from 'next/router';
 
 import Alert from '@mui/material/Alert';
+import { $mobx } from 'mobx';
 
 const PriceMapForm = ({ attorneyId, initialData, attorneyStore, courtStore, countyStore, violationStore, priceStore }) => {
     const [id, setId] = useState(null);
@@ -68,6 +69,16 @@ const PriceMapForm = ({ attorneyId, initialData, attorneyStore, courtStore, coun
         setId(initialData.objectId);
         setPoints(initialData.points);
         setPrice(initialData.price);
+        if (initialData.county) {
+            setCounty(initialData.county);
+        }
+        if (initialData.court) {
+            setCourt(initialData.court);
+            console.log(initialData.court);
+        }
+        if (initialData.violation) {
+            setViolation(initialData.violation);
+        }
     }
 
     const router = useRouter();
@@ -79,16 +90,16 @@ const PriceMapForm = ({ attorneyId, initialData, attorneyStore, courtStore, coun
         e.preventDefault();
         const priceMap = {
             attorney: attorney.objectId,
-            court: court || null,
-            county: county || null,
-            violation: violation || null,
+            court: court ? court.objectId : null,
+            county: county ? county.objectId : null,
+            violation: violation ? violation.objectId : null,
             points,
             price
         }
 
         try {
             if (id) {
-                //await priceStore.updatePrice(id, attorney);
+                await priceStore.updatePrice(id, priceMap);
             } else {
                 await priceStore.createPrice(priceMap);
             }
@@ -151,26 +162,26 @@ const PriceMapForm = ({ attorneyId, initialData, attorneyStore, courtStore, coun
                 id="court"
                 options={courtStore.courts}
                 getOptionLabel={(court) => court.disp_name()}
-                onChange={(event, court) => setCourt(court.objectId || null)}
+                onChange={(event, court) => setCourt(court || null)}
+                value={court || null}
                 renderInput={(params) => <TextField {...params} label="Court" />}
             />
-            {court}
             <Autocomplete
                 id="county"
                 options={countyStore.counties}
                 getOptionLabel={(county) => county.disp_name()}
-                onChange={(event, county) => setCounty(county.objectId || null)}
+                onChange={(event, county) => setCounty(county || null)}
+                value={county || null}
                 renderInput={(params) => <TextField {...params} label="County" />}
             />
-            {county}
             <Autocomplete
                 id="violation"
                 options={violationStore.violations}
                 getOptionLabel={(violation) => violation.disp_name()}
-                onChange={(event, violation) => setViolation(violation.objectId || null)}
+                onChange={(event, violation) => setViolation(violation || null)}
+                value={violation || null}
                 renderInput={(params) => <TextField {...params} label="Violation" />}
             />
-            {violation}
             <TextField
                 id="points"
                 label="Points"

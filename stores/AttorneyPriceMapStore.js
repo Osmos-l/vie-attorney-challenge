@@ -9,7 +9,9 @@ const AttorneyPriceMapStore = types
     isLoading: types.optional(types.boolean, false),
   })
   .views((self) => ({
-    // Add views here
+    get priceMapById() {
+      return (id) => self.priceMap.find(priceMap => priceMap.objectId === id);
+    },
   }))
   .actions((self) => ({
     fetchPrices: flow(function* fetchPrices(searchTerm='') {
@@ -72,7 +74,38 @@ const AttorneyPriceMapStore = types
      
 
     }),
-    updatePrice: flow(function* updatePrice(data) {}),
+    updatePrice: flow(function* updatePrice(id, price) {
+      try {
+        const payload = {
+          attorney:     price.attorney,
+          court:      price.court,
+          county:     price.county,
+          violation:  price.violation,
+          points:    price.points,
+          price: price.price
+        }
+        const response = yield axios.put(`/api/attorney-price-map-data/${id}`, payload);
+  
+        const priceMapData = response.data.data;
+        const updatedPriceMap = new AttorneyPriceBuilder()
+                                .withObjectId(priceMapData._id)
+                                .withViolation(priceMapData.violation)
+                                .withAttorney(priceMapData.attorney)
+                                .withCounty(priceMapData.county)
+                                .withCourt(priceMapData.court)
+                                .withPoints(priceMapData.points)
+                                .withPrice(priceMapData.price)
+                                .build()
+
+        const index = self.priceMap.findIndex(a => a.objectId === updatedPriceMap.objectId);
+        if (index !== -1) {
+          self.priceMap[index] = updatedPriceMap;
+        }
+      } catch (error) {
+        console.error('Failed to update priceMap:', error);
+        throw error;
+      }
+    }),
     deletePrice: flow(function* deletePrice(data) {}),
     // Add more actions here
   }))
