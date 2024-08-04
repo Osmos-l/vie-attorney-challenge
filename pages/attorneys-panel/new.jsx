@@ -6,6 +6,7 @@ import { Box, Typography } from '@mui/material'
 @inject(({ store }) => store)
 @observer
 class AttorneysPanelPage extends Component {
+
   render() {
     return (
       <Box

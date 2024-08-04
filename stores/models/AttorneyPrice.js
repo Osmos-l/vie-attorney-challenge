@@ -1,7 +1,7 @@
 import { types } from 'mobx-state-tree'
 import Violation from '@/stores/models/Violation'
 import TrafficCounty from '@/stores/models/TrafficCounty'
-import TrafficCourt from './trafficCourt'
+import TrafficCourt from '@/stores/models/TrafficCourt'
 
 const AttorneyPrice = types
   .model('AttorneyPrice', {

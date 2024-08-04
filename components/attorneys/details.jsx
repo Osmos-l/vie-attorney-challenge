@@ -123,6 +123,15 @@ const AttorneyDetails = ({ attorney, attorneyStore }) => {
                 </Box>
             </Box>
             <Divider />
+            <Box sx={{ width: '300px', p: 2}}>
+                <Button 
+                    variant="contained" 
+                    sx={{ width: '100%' }} 
+                    component="a" 
+                    href={`/pricemap-panel/new?attorneyId=${attorney.objectId}`}
+                >Add Price map</Button>
+            </Box>
+            <Divider />
             <Box sx={{paddingTop: 2}}>
                 <Suspense fallback={<SkeletonAttorneyPricesMapListPanel />}>          
                     <AttorneyPricesMapListPanel attorneyId={attorney.objectId} />

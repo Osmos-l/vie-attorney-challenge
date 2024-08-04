@@ -1,4 +1,4 @@
-import TrafficCourt from "@/stores/models/trafficCourt";
+import TrafficCourt from "@/stores/models/TrafficCourt";
 
 class TrafficCourtBuilder {
     constructor() {

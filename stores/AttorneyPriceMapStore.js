@@ -5,7 +5,7 @@ import AttorneyPriceBuilder from '@/utils/builders/attorneyPriceBuilder'
 
 const AttorneyPriceMapStore = types
   .model('AttorneyPriceMapStore', {
-    priceMap: types.array(AttorneyPrice), // Initialize attorneysPanel as an array of Attorney model
+    priceMap: types.array(AttorneyPrice),
     isLoading: types.optional(types.boolean, false),
   })
   .views((self) => ({
@@ -40,7 +40,38 @@ const AttorneyPriceMapStore = types
         self.isLoading = false;
       }
     }),
-    createPrice: flow(function* createPrice(data) {}),
+    createPrice: flow(function* createPrice(price) {
+      try {
+        const payload = {
+          attorney:     price.attorney,
+          court:      price.court,
+          county:     price.county,
+          violation:  price.violation,
+          points:    price.points,
+          price: price.price
+        }
+
+        const response = yield axios.post('/api/attorney-price-map-data', payload);
+        console.log(response);
+        const priceMapData = response.data.data;
+        const createdPriceMap = new AttorneyPriceBuilder()
+                                .withObjectId(priceMapData._id)
+                                .withViolation(priceMapData.violation)
+                                .withAttorney(priceMapData.attorney)
+                                .withCounty(priceMapData.county)
+                                .withCourt(priceMapData.court)
+                                .withPoints(priceMapData.points)
+                                .withPrice(priceMapData.price)
+                                .build()
+
+        self.priceMap.push(createdPriceMap);
+      } catch (error) {
+        console.error(error);
+        throw error;
+      }
+     
+
+    }),
     updatePrice: flow(function* updatePrice(data) {}),
     deletePrice: flow(function* deletePrice(data) {}),
     // Add more actions here

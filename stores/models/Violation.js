@@ -7,6 +7,10 @@ const Violation = types
     points: types.number,
   })
   .views((self) => ({}))
-  .actions((self) => ({}));
+  .actions((self) => ({
+    disp_name() {
+      return `${self.name}`;
+    }
+  }));
 
 export default Violation;

@@ -3,7 +3,7 @@ import Violation from "@/stores/models/Violation";
 import ViolationBuilder from "./violationBuilder";
 import TrafficCounty from "@/stores/models/TrafficCounty";
 import TrafficCountyBuilder from "./trafficCountyBuilder";
-import TrafficCourt from "@/stores/models/trafficCourt";
+import TrafficCourt from "@/stores/models/TrafficCourt";
 import TrafficCourtBuilder from "./trafficCourtBuilder";
 
 class AttorneyPriceBuilder {
