@@ -28,7 +28,7 @@ const PriceMapCard = (props) => {
                                     <PanToolIcon />
                                 </ListItemIcon>
                                 <ListItemText
-                                    secondary={priceMap.violation}
+                                    secondary={priceMap.violation.name}
                                     primary={'Violation'}
                                 />
                             </ListItem>
@@ -39,7 +39,7 @@ const PriceMapCard = (props) => {
                                     <AccountBalanceIcon />
                                 </ListItemIcon>
                                 <ListItemText
-                                    secondary={priceMap.court}
+                                    secondary={priceMap.court.disp_name()}
                                     primary={'Court'}
                                 />
                             </ListItem>
@@ -50,7 +50,7 @@ const PriceMapCard = (props) => {
                                     <FlagIcon />
                                 </ListItemIcon>
                                 <ListItemText
-                                    secondary={priceMap.county}
+                                    secondary={priceMap.county.disp_name()}
                                     primary={'County'}
                                 />
                             </ListItem>

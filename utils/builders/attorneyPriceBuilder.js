@@ -1,4 +1,10 @@
 import AttorneyPrice from "@/stores/models/AttorneyPrice";
+import Violation from "@/stores/models/Violation";
+import ViolationBuilder from "./violationBuilder";
+import TrafficCounty from "@/stores/models/TrafficCounty";
+import TrafficCountyBuilder from "./trafficCountyBuilder";
+import TrafficCourt from "@/stores/models/trafficCourt";
+import TrafficCourtBuilder from "./trafficCourtBuilder";
 
 class AttorneyPriceBuilder {
     constructor() {
@@ -7,8 +13,8 @@ class AttorneyPriceBuilder {
         enabled: false,
         attorney: '',
         court: '',
-        county: '',
-        violation: '',
+        county: null,
+        violation: null,
         points: 0,
         price: 0,
       };
@@ -30,7 +36,28 @@ class AttorneyPriceBuilder {
     }
   
     withCourt(court) {
-      this.attorneyPrice.court = court;
+      if (!court) {
+        return this;
+      }
+
+      if (court.constructor.name === TrafficCourt.name) {
+        this.attorneyPrice.court = county;
+        return this
+      }
+
+      if (typeof court._id === 'undefined') {
+        return this;
+      }
+
+      const { _id, name, address, stateShortName, enabled} = court;
+      this.attorneyPrice.court = new TrafficCourtBuilder()
+                                        .withObjectId(_id)
+                                        .withName(name)
+                                        .withAddress(address)
+                                        .withStateShortName(stateShortName)
+                                        .withEnabled(enabled)
+                                        .build();
+
       return this;
     }
   
@@ -40,9 +67,29 @@ class AttorneyPriceBuilder {
     }
 
     withCounty(county) {
-        this.attorneyPrice.county = county;
+      if (!county) {
         return this;
       }
+
+      if (county.constructor.name === TrafficCounty.name) {
+        this.attorneyPrice.county = county;
+        return this
+      }
+
+      if (typeof county._id === 'undefined') {
+        return this;
+      }
+
+      const { _id, name, shortName, enabled} = county;
+      this.attorneyPrice.county = new TrafficCountyBuilder()
+                                        .withObjectId(_id)
+                                        .withName(name)
+                                        .withShortName(shortName)
+                                        .withEnabled(enabled)
+                                        .build();
+
+      return this;
+    }
   
     withPrice(price) {
       this.attorneyPrice.price = price;
@@ -50,8 +97,27 @@ class AttorneyPriceBuilder {
     }
 
     withViolation(violation) {
-        this.attorneyPrice.violation = violation;
+      if (!violation) {
         return this;
+      }
+
+      if (violation.constructor.name === Violation.name) {
+        this.attorneyPrice.violation = violation;
+        return this
+      }
+
+      if (typeof violation._id === 'undefined') {
+        return this;
+      }
+
+      const { _id, name, points} = violation;
+      this.attorneyPrice.violation = new ViolationBuilder()
+                                        .withObjectId(_id)
+                                        .withName(name)
+                                        .withPoints(points)
+                                        .build();
+
+      return this;
     }
   
     build() {

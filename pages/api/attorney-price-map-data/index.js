@@ -1,5 +1,8 @@
 import dbConnect from '@/utils/dbConnect'
 import AttorneyPriceMap from '@/db-schemas/AttorneyPriceMap';
+import TrafficCourt from '@/db-schemas/TrafficCourt';
+import TrafficCounty from '@/db-schemas/TrafficCounty';
+import Violation from '@/db-schemas/Violation';
 import responseHandler from '@/utils/responseHandler';
 
 // TODO: Add Pagination
@@ -7,8 +10,11 @@ const getAttorneyPriceMaps = async (query, res) => {
   const { attorneyId } = query;
   query = attorneyId ? { attorney: attorneyId } : {};
 
-  const attorneyPriceMaps = await AttorneyPriceMap.find(query);
-    
+  const attorneyPriceMaps = await AttorneyPriceMap.find(query)
+                                    .populate('county')
+                                    .populate('court')
+                                    .populate('violation');
+
   return responseHandler.success(200, attorneyPriceMaps, res);
 }
 
