@@ -6,7 +6,6 @@ import { usePathname } from "next/navigation";
 const pages = [
     { name: "Home",         path: "/"},
     { name: "Attorneys",    path: "/attorneys-panel"},
-    { name: "Violations",   path: "/violations-panel"}
 ];
 
 export const NavBar = () => {
