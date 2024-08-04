@@ -44,3 +44,5 @@ This project is a web application for managing attorneys and their related price
 
 4.  **Seeding :**
 Go to `/api/seeding`
+
+https://youtu.be/cTjC40YlQi0
