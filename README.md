@@ -3,6 +3,7 @@
 ## Overview
 
 This project is a web application for managing attorneys and their related price maps per county/court/violation/points. The application is built using Next.js for the frontend, MobX for state management, and Mongoose for database interactions with MongoDB.
+Built in 3.5 days
 
 https://youtu.be/cTjC40YlQi0
 
